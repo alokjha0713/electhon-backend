@@ -8,8 +8,10 @@ app.use(express.json())
 connectWithDb()
 
 app.listen(8003,()=>{
-    console.log("Server is running on PORT 5000")
+    console.log("Server is running on PORT 8003")
 })
 
 const user=require('./routes/user')
+const area=require('./routes/area')
 app.use("/api/user",user)
+app.use("/api/area",area)
