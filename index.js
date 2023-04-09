@@ -12,6 +12,8 @@ app.listen(8003,()=>{
 })
 
 const user=require('./routes/user')
-const area=require('./routes/area')
+const area=require('./routes/area');
+const slot=require('./routes/slot')
 app.use("/api/user",user)
 app.use("/api/area",area)
+app.use("/api/slot",slot)
