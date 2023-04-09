@@ -8,11 +8,9 @@ exports.addArea=BigPromise(async (req,res)=>{
     const{pincode,areaName}=req.body
 
     console.log(req.body)
+    const area1=await Area.findOne({areaName:areaName})
 
-    const area1=await Area.findOne({area:areaName})
 
-    console.log("Area 1 "+area1)
-    console.log(area1)
     if(area1!=null){
         return res.status(200).json({
             message:"Area Already Exsist "

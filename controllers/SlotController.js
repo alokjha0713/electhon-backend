@@ -3,7 +3,7 @@ const BigPromise=require('../middleware/bigpromise')
 
 exports.getSlot=(BigPromise(async(req,res)=>{
 
-    const area=req.params.area;
+    const area=req.params.areaName;
     console.log("Area "+area);
 
     if(!area){
