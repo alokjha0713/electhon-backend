@@ -5,7 +5,7 @@ const Slot=require('../models/Slot')
 
 exports.addArea=BigPromise(async (req,res)=>{
 
-    const{pincode,areaName}=req.body
+    const{pincode,areaName,description,url}=req.body
 
     console.log(req.body)
     const area1=await Area.findOne({areaName:areaName})
@@ -25,7 +25,9 @@ exports.addArea=BigPromise(async (req,res)=>{
     }
     const area=await Area.create({
         pincode,
-        areaName
+        areaName,
+        description,
+        url
     })
 
     

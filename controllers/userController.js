@@ -3,6 +3,7 @@ const BigPromise=require('../middleware/bigpromise')
 const User=require('../models/user')
 const bcrypt=require('bcryptjs')
 const jwt=require('jsonwebtoken')
+const cookieToken=require('../config/cookieToken')
 
 exports.signup=BigPromise(async (req,res)=>{
     
@@ -32,6 +33,8 @@ exports.signup=BigPromise(async (req,res)=>{
 
     const token=user.getJwtToken()
 
+    // localStorage.setItem('token',token)
+    cookieToken(user,res)
     res.status(200).json({
         success:true,
         user,

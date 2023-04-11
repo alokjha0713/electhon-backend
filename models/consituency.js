@@ -7,6 +7,12 @@ const AreaSchema=mongoose.Schema({
     },
     areaName:{
         type:String
+    },
+    description:{
+        type:String
+    },
+    url:{
+        type:String
     }
 })
 
