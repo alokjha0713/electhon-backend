@@ -11,16 +11,18 @@ app.use(cookieParser())
 app.use(cors())
 connectWithDb()
 
-app.listen(8003,()=>{
-    console.log("Server is running on PORT 8003")
+app.listen(5000,()=>{
+    console.log("Server is running on PORT 5000")
 })
 
 const user=require('./routes/user')
 const area=require('./routes/area');
 const slot=require('./routes/slot')
 const travel1=require('./routes/travel')
+const post=require('./routes/post')
 
 app.use("/api/user",user)
 app.use("/api/area",area)
 app.use("/api/slot",slot)
 app.use("/api/travel",travel1)
+app.use("/api/post",post)

@@ -7,6 +7,7 @@ const cookieToken=require('../config/cookieToken')
 
 exports.signup=BigPromise(async (req,res)=>{
     
+    console.log("Enter")
     const {name,email,password,mobileNumber,Address}=req.body
 
     const user1=await User.findOne({email:email})
@@ -33,8 +34,8 @@ exports.signup=BigPromise(async (req,res)=>{
 
     const token=user.getJwtToken()
 
-    // localStorage.setItem('token',token)
-    cookieToken(user,res)
+    // cookieToken(user,res)
+
     res.status(200).json({
         success:true,
         user,
@@ -47,6 +48,11 @@ exports.signIn=BigPromise(async (req,res)=>{
 
     const {email,password}=req.body
     console.log("password "+password)
+
+//    const token1=req.cookies.token;
+
+//    console.log("Cookie Token "+token1)
+
 
     const user=await User.findOne({email:email}).select("+password") 
 
@@ -63,6 +69,7 @@ exports.signIn=BigPromise(async (req,res)=>{
             message:"Password does not match "
         })
     }
+    // cookieToken(user,res)
     const token=user.getJwtToken()
     res.status(200).json({
         user,

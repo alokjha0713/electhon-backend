@@ -18,4 +18,4 @@ const cookieToken=(user,res)=>{
     })
 }
 
-// module.exports=cookieToken
+module.exports=cookieToken
