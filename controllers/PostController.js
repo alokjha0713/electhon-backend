@@ -74,10 +74,42 @@ exports.likePosts=BigPromise(async(req,res)=>{
     
 })
 
+exports.makeComments=BigPromise(async(req,res)=>{
+
+    const token=req.params.token;
+    console.log("it is in comment path    "+token)
+    const decode=jwt.verify(token,"thisismynoteapp")
+
+    const comment = {
+        comment: req.body.text,
+        postedBy: decode._id
+    }
+    const result = await POST.findByIdAndUpdate(req.body.postId, {
+        $push: { comments: comment }
+    }, {
+        new: true
+    })
+    result.populate("comments.postedBy", "_id name").exec();
+
+    result.populate("postedBy", "_id name photo").exec();
+//     result.populate({
+//   path: 'comments.postedBy',
+//   select: '_id name'
+// });
+
+// result.populate({
+//   path: 'postedBy',
+//   select: '_id name photo'
+// });
+
+    console.log("resluts of comment page      "+result)
+    res.json(result);
+})
+
 exports.unlikePosts=BigPromise(async(req,res)=>{
 
     const token=req.params.token;
-    console.log("it is in like path    "+token)
+    console.log("it is in makecomment path    "+token)
     const decode=jwt.verify(token,"thisismynoteapp")
     
     console.log(req.body.postId)
