@@ -24,7 +24,7 @@ exports.signup=BigPromise(async (req,res)=>{
        })
     }
     
-   const user= await  User.create({
+    const user= await  User.create({
         name,
         email,
         password,
