@@ -48,7 +48,7 @@ exports.getArea=BigPromise(async(req,res)=>{
             message:"Plz Provide The Pincode "
         })
     }
-    const area=await Area.find({pincode:pin},{areaName:1,_id:0});
+    const area=await Area.find({pincode:pin});
 
     res.status(200).json({
         area

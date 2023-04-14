@@ -16,7 +16,7 @@ exports.getSlot=(BigPromise(async(req,res)=>{
 
     
     res.status(200).json({
-        slot
+        slot:slot[0]
     })
 }))
 
