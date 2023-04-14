@@ -11,8 +11,8 @@ app.use(cookieParser())
 app.use(cors())
 connectWithDb()
 
-app.listen(5000,()=>{
-    console.log("Server is running on PORT 5000")
+app.listen(4000,()=>{
+    console.log("Server is running on PORT 4000")
 })
 
 const user=require('./routes/user')
@@ -20,9 +20,11 @@ const area=require('./routes/area');
 const slot=require('./routes/slot')
 const travel1=require('./routes/travel')
 const post=require('./routes/post')
+const document=require('./routes/document')
 
 app.use("/api/user",user)
 app.use("/api/area",area)
 app.use("/api/slot",slot)
 app.use("/api/travel",travel1)
 app.use("/api/post",post)
+app.use("/api/document",document)

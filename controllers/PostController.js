@@ -33,7 +33,7 @@ exports.createPost=(BigPromise(async(req,res)=>{
 exports.postAllData=BigPromise(async(req,res)=>{
     const token=req.params.token;
     POST.find()
-        .populate("postedBy", "_id name Photo")
+        .populate("postedBy", "_id name url")
         .then(posts => res.json(posts))
         .catch(err => console.log(err))
     // const post=await POST.find({})
@@ -80,27 +80,22 @@ exports.makeComments=BigPromise(async(req,res)=>{
     console.log("it is in comment path    "+token)
     const decode=jwt.verify(token,"thisismynoteapp")
 
+    console.log("Decode  "+decode)
+
     const comment = {
         comment: req.body.text,
-        postedBy: decode._id
+        postedBy: decode.id
     }
     const result = await POST.findByIdAndUpdate(req.body.postId, {
         $push: { comments: comment }
     }, {
         new: true
-    })
-    result.populate("comments.postedBy", "_id name").exec();
+    }).populate("postedBy", "_id name photo")
+    .populate("comments.postedBy", "_id name").exec();
 
-    result.populate("postedBy", "_id name photo").exec();
-//     result.populate({
-//   path: 'comments.postedBy',
-//   select: '_id name'
-// });
+    // result.populate("comments.postedBy", "_id name");
 
-// result.populate({
-//   path: 'postedBy',
-//   select: '_id name photo'
-// });
+    // result
 
     console.log("resluts of comment page      "+result)
     res.json(result);

@@ -47,7 +47,7 @@ exports.alotSlot=(BigPromise(async(req,res)=>{
     await Slot.findByIdAndUpdate(slot[0]._id,newData)
 
     res.status(200).json({
-        available:available-1
+        success:true
     })
     
 }))
