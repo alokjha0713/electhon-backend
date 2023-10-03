@@ -54,7 +54,7 @@ exports.signIn=BigPromise(async (req,res)=>{
 //    console.log("Cookie Token "+token1)
 
 
-    const user=await User.findOne({email:email}).select("+password") 
+    const user=await User.findOne({email:email}).select("+password").maxTimeMS(30000) 
 
     if(!user)
     {
